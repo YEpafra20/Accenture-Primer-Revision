@@ -53,6 +53,8 @@ accenture-primer-revision/
 | MySQL Relational Databases | Elective | Not started | Add SQL, schema, queries, normalization |
 | Python Programming | Elective | Not started | Add fundamentals, syntax, automation |
 
+## 🌱 Getting Started
+
 ## Essentials
 
 - [Software Fundamentals](essentials/01-software-fundamentals/README.md)
