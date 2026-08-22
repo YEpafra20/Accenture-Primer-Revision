@@ -1,7 +1,7 @@
 # Accenture Primer Revision
 
 This repository is a personal revision tracker for the Accenture Primer program. It is organized by course type and contains structured notes, study goals, and progress tracking for each topic area.
-
+![Accenture image](./acclogo.jpg)
 ## Repository structure
 
 ```text
