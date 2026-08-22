@@ -1,0 +1,521 @@
+<div id="tracker-root"></div>
+<style>
+  #tracker-root {
+    --ink: #1C2420;
+    --paper: #EEF1EA;
+    --card: #FBFBF8;
+    --line: #D7DBCF;
+    --stamp: #2F6F63;
+    --stamp-dark: #1F4A42;
+    --amber: #B8792B;
+    --muted: #63695F;
+    --danger: #A23E3E;
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    padding: 28px 20px 60px;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+  #tracker-root * { box-sizing: border-box; }
+
+  .tr-shell { max-width: 760px; margin: 0 auto; }
+
+  .tr-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .tr-title {
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 18px;
+  }
+
+  .tr-summary {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 22px;
+  }
+  .tr-ring-wrap { position: relative; width: 72px; height: 72px; flex: none; }
+  .tr-ring-wrap svg { transform: rotate(-90deg); }
+  .tr-ring-bg { fill: none; stroke: var(--line); stroke-width: 7; }
+  .tr-ring-fg { fill: none; stroke: var(--stamp); stroke-width: 7; stroke-linecap: round; transition: stroke-dashoffset 0.5s ease; }
+  .tr-ring-pct {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-family: Georgia, serif; font-weight: 700; font-size: 16px;
+  }
+  .tr-summary-text { flex: 1; }
+  .tr-summary-text .big { font-family: Georgia, serif; font-weight: 700; font-size: 18px; margin-bottom: 2px; }
+  .tr-summary-text .small { font-size: 13px; color: var(--muted); }
+  .tr-reset-all {
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--muted);
+    font-size: 12px;
+    padding: 7px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .tr-reset-all:hover { border-color: var(--danger); color: var(--danger); }
+
+  .tr-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .tr-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .tr-tab.active {
+    border-color: var(--stamp);
+    color: var(--stamp-dark);
+    background: #E4EFEC;
+  }
+  .tr-tab-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--line);
+    flex: none;
+  }
+  .tr-tab.complete .tr-tab-dot { background: var(--stamp); }
+
+  .tr-course-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+  }
+  .tr-course-head h2 {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    margin: 0;
+  }
+  .tr-course-meta { font-size: 12px; color: var(--muted); }
+  .tr-course-sub { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
+
+  .tr-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+
+  .tr-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .tr-item:hover { border-color: var(--stamp); }
+  .tr-item.checked { background: #F2F6F1; }
+
+  .tr-stamp {
+    flex: none;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 2px solid var(--line);
+    position: relative;
+    margin-top: 1px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .tr-item.checked .tr-stamp {
+    border-color: var(--stamp);
+    background: var(--stamp);
+  }
+  .tr-stamp svg {
+    position: absolute; inset: 0; margin: auto;
+    opacity: 0; transform: scale(0.5) rotate(-8deg);
+    transition: opacity 0.15s, transform 0.15s;
+  }
+  .tr-item.checked .tr-stamp svg { opacity: 1; transform: scale(1) rotate(-8deg); }
+
+  .tr-item-text {
+    font-size: 14.5px;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+  .tr-item.checked .tr-item-text {
+    color: var(--muted);
+    text-decoration: line-through;
+    text-decoration-color: var(--line);
+  }
+
+  .tr-course-reset {
+    font-size: 12px;
+    color: var(--muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .tr-course-reset:hover { color: var(--danger); }
+
+  .tr-footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  @media (max-width: 480px) {
+    .tr-title { font-size: 24px; }
+    .tr-summary { flex-wrap: wrap; }
+  }
+</style>
+
+<script>
+(function () {
+  const COURSES = [
+    {
+      key: "software-fundamentals",
+      label: "Software Fundamentals",
+      category: "Essentials",
+      items: [
+        "Can define Algorithm, Flowchart, Pseudocode and list flowchart symbols",
+        "Can differentiate Variable vs Constant vs Expression",
+        "Can list all 4 operator types with examples",
+        "Can write For, While, Do-While loop syntax from memory",
+        "Can explain Nested Loop execution order",
+        "Can differentiate 1-D vs 2-D arrays and array operations",
+        "Can list all 6 SDLC phases in order",
+        "Can differentiate HLD vs LLD",
+        "Can name all 6 process models and when each is used",
+        "Can differentiate Functional vs Non-Functional requirements",
+        "Can differentiate Verification vs Validation",
+        "Can list STLC phases in order",
+        "Can differentiate Static vs Dynamic testing, and Black Box vs White Box",
+        "Can list all 4 types of maintenance",
+        "Can list all 4 components of SCM"
+      ]
+    },
+    {
+      key: "web-technologies",
+      label: "Web Technologies",
+      category: "Essentials",
+      items: [
+        "Can define Internet, World Wide Web, Web Browser, Web Server",
+        "Can differentiate Web Page vs Website vs Web Application",
+        "Can differentiate Frontend vs Backend development",
+        "Can differentiate Static vs Dynamic web pages, with request/response flow",
+        "Can list HTML structure and basic tags",
+        "Can differentiate Semantic vs Non-semantic elements, and list new semantic tags",
+        "Can list HTML form attributes and input elements",
+        "Can list JavaScript primitive vs reference data types",
+        "Can differentiate Declaration, Initialization, Assignment",
+        "Can differentiate Global vs Local variable scope",
+        "Can use == vs === and != vs !== correctly",
+        "Can list JavaScript control structures (decision making + looping)",
+        "Can explain client-side vs server-side validation timing",
+        "Can explain what the DOM and Window object represent",
+        "Can explain what a cookie is and why it's used",
+        "Can explain what jQuery is and who created it",
+        "Can list jQuery DOM insertion methods",
+        "Can list JSON syntax rules",
+        "Can list the 4 characteristics of good quality code"
+      ]
+    },
+    {
+      key: "gen-ai",
+      label: "Gen AI",
+      category: "Essentials",
+      items: [
+        "Can define AI, ML, Deep Learning, and Generative AI in one line each",
+        "Can differentiate Traditional AI vs Generative AI vs Predictive AI",
+        "Can list all 4 types of Machine Learning",
+        "Can explain the workflow for Supervised, Unsupervised, and Reinforcement Learning",
+        "Can name at least 8 common ML algorithms",
+        "Can list the 6 stages of ML model deployment",
+        "Can list deep learning model types and their use cases (CNN, RNN, etc.)",
+        "Can differentiate Generative vs Discriminative models with the facial recognition example",
+        "Can explain what RNNs, LSTM, and GRU are used for and how they differ",
+        "Can explain the Transformer architecture (Encoder/Decoder) and Attention Mechanism",
+        "Can name at least 5 transformer-based models and what makes each unique",
+        "Can name at least 4 industries using Generative AI and their associated tools"
+      ]
+    },
+    {
+      key: "agile-devops-devsecops",
+      label: "Agile, DevOps & DevSecOps",
+      category: "Essentials",
+      items: [
+        "Can state the 4 central tenets of Agile",
+        "Can recite the 4 values of the Agile Manifesto",
+        "Can list all 7 Agile principles with at least one benefit each",
+        "Can differentiate Descriptive vs Predictive vs Prescriptive Analytics",
+        "Can list all 5 Analytics layers in order, with their guiding question",
+        "Can list the 4 types of KPIs and the Green/Yellow/Red status meaning",
+        "Can state the Data Mining Process steps in order",
+        "Can state the Design Thinking life cycle",
+        "Can explain why DevOps was needed (the gap it fixes)",
+        "Can list all 8 DevOps phases in order",
+        "Can name at least 4 CI/CD tools and one distinguishing fact about each",
+        "Can differentiate Continuous Integration vs Continuous Delivery vs Continuous Deployment",
+        "Can expand the CAMS framework",
+        "Can define DevSecOps and how it differs from DevOps",
+        "Can list the DevSecOps pipeline phases in order",
+        "Can expand SAST, DAST, IAST, SCA",
+        "Can define Infrastructure as Code and name at least 3 IaC tools"
+      ]
+    },
+    {
+      key: "aws",
+      label: "AWS",
+      category: "Electives",
+      items: [
+        "Can name the 3 components of AWS Global Infrastructure (Region, AZ, Edge Location)",
+        "Can list the 4 factors for selecting a region",
+        "Can list the 3 ways to interact with AWS",
+        "Can explain S3 durability and the 6 storage classes",
+        "Can differentiate Glacier retrieval options and their timing",
+        "Can decode an EC2 instance type name (e.g. c5.large)",
+        "Can list all 5 EC2 instance type categories and a use case for each",
+        "Can differentiate SSD vs HDD EBS volume types",
+        "Can explain VPC, subnets, and the 5-reserved-IP rule",
+        "Can differentiate Internet Gateway vs NAT Gateway",
+        "Can differentiate Security Groups (stateful) vs Network ACLs (stateless)",
+        "Can differentiate Application Load Balancer (Layer 7) vs Network Load Balancer (Layer 4)",
+        "Can differentiate RDS, Aurora, DynamoDB, Redshift, DocumentDB, Neptune",
+        "Can list at least 5 \"resources for technology support\" services and their purpose",
+        "Can differentiate Authentication vs Authorization",
+        "Can explain IAM User vs Group vs Role",
+        "Can differentiate AWS Shield Standard vs Advanced",
+        "Can list the 6 pillars of the Well-Architected Framework",
+        "Can list the 3 AWS pricing models and the 4 support plan tiers"
+      ]
+    },
+    {
+      key: "mysql",
+      label: "Mastering Relational Databases with MySQL",
+      category: "Electives",
+      items: [
+        "Can differentiate Entity vs Attribute, with examples",
+        "Can explain what a Composite Key is",
+        "Can state the goal of Normalization",
+        "Can describe what 1NF, 2NF, and 3NF each require",
+        "Can explain Denormalization and why it's used",
+        "Can list the 3 MySQL data type categories with examples",
+        "Can list all 5 constraint types",
+        "Can explain Parent table vs Child table in a Foreign Key relationship",
+        "Can write ALTER TABLE statements to add, modify, rename, and drop a column",
+        "Can differentiate TRUNCATE vs DROP",
+        "Can differentiate DELETE vs TRUNCATE",
+        "Can explain COMMIT, SAVEPOINT, ROLLBACK, and ROLLBACK TO SAVEPOINT",
+        "Can list the 3 logical operators (AND, OR, NOT)",
+        "Can differentiate Single-row vs Multiple-row (aggregate) SQL functions",
+        "Can write a query using GROUP BY and HAVING correctly",
+        "Can differentiate Equijoin, Outer Join, Self Join, and Natural Join",
+        "Can differentiate Single-row vs Multiple-row subqueries and their operators",
+        "Can explain GRANT vs REVOKE",
+        "Can explain what a VIEW, AUTO_INCREMENT, and INDEX are used for"
+      ]
+    },
+    {
+      key: "python",
+      label: "Programming using Python",
+      category: "Electives",
+      items: [
+        "Can list Python's general characteristics and developer-facing advantages",
+        "Can list all Python keywords and the 4 rules for valid identifiers",
+        "Can list all 4 literal types",
+        "Can list all 8 core Python data types with an example each",
+        "Can explain the difference between / and // division",
+        "Can explain why input() always returns a string",
+        "Can list all 7 operator categories",
+        "Can write an if/elif/else block and a single-line conditional",
+        "Can write a for loop using range(start, stop, step)",
+        "Can differentiate break, continue, and pass",
+        "Can differentiate List, Tuple, Set, and Dictionary by mutability and order",
+        "Can explain sort() vs sorted()",
+        "Can differentiate local vs global variable scope, including shadowing",
+        "Can write a basic lambda function",
+        "Can name at least 5 standard library modules and what each is used for",
+        "Can create a NumPy array and check its type and dimensions",
+        "Can differentiate json.load(), json.loads(), and json.dump()",
+        "Can list the 3 core XML concepts (Elements, Root, Attributes)",
+        "Can list the ElementTree methods for reading, modifying, and removing XML elements"
+      ]
+    }
+  ];
+
+  const STORAGE_KEY = "revision-progress-v1";
+  let state = {};
+  let activeCourse = COURSES[0].key;
+  const root = document.getElementById("tracker-root");
+
+  function totalItems() {
+    return COURSES.reduce((sum, c) => sum + c.items.length, 0);
+  }
+  function checkedItems() {
+    let n = 0;
+    COURSES.forEach(c => {
+      const arr = state[c.key] || [];
+      n += arr.filter(Boolean).length;
+    });
+    return n;
+  }
+  function courseChecked(course) {
+    const arr = state[course.key] || [];
+    return arr.filter(Boolean).length;
+  }
+
+  async function loadState() {
+    try {
+      const result = await window.storage.get(STORAGE_KEY, false);
+      if (result && result.value) {
+        state = JSON.parse(result.value);
+      }
+    } catch (e) {
+      state = {};
+    }
+    render();
+  }
+
+  async function saveState() {
+    try {
+      await window.storage.set(STORAGE_KEY, JSON.stringify(state), false);
+    } catch (e) {
+      console.error("Could not save progress", e);
+    }
+  }
+
+  function toggleItem(courseKey, idx) {
+    if (!state[courseKey]) state[courseKey] = [];
+    state[courseKey][idx] = !state[courseKey][idx];
+    saveState();
+    render();
+  }
+
+  function resetCourse(courseKey) {
+    state[courseKey] = [];
+    saveState();
+    render();
+  }
+
+  function resetAll() {
+    state = {};
+    saveState();
+    render();
+  }
+
+  function ringSvg(pct, size, stroke) {
+    const r = (size - stroke) / 2;
+    const c = 2 * Math.PI * r;
+    const offset = c - (pct / 100) * c;
+    return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+      <circle class="tr-ring-bg" cx="${size/2}" cy="${size/2}" r="${r}" stroke-width="${stroke}"></circle>
+      <circle class="tr-ring-fg" cx="${size/2}" cy="${size/2}" r="${r}" stroke-width="${stroke}"
+        stroke-dasharray="${c}" stroke-dashoffset="${offset}"></circle>
+    </svg>`;
+  }
+
+  function checkSvg() {
+    return `<svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+      <path d="M4 12.5L9.5 18L20 6" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`;
+  }
+
+  function render() {
+    const total = totalItems();
+    const done = checkedItems();
+    const overallPct = total ? Math.round((done / total) * 100) : 0;
+    const course = COURSES.find(c => c.key === activeCourse);
+    const cDone = courseChecked(course);
+    const cTotal = course.items.length;
+
+    root.innerHTML = `
+      <div class="tr-shell">
+        <div class="tr-eyebrow">Accenture Primer &middot; Revision Tracker</div>
+        <div class="tr-title">Checklist progress</div>
+
+        <div class="tr-summary">
+          <div class="tr-ring-wrap">
+            ${ringSvg(overallPct, 72, 7)}
+            <div class="tr-ring-pct">${overallPct}%</div>
+          </div>
+          <div class="tr-summary-text">
+            <div class="big">${done} of ${total} checklist items</div>
+            <div class="small">across all 7 courses &middot; saved automatically</div>
+          </div>
+          <button class="tr-reset-all" id="tr-reset-all">Reset all</button>
+        </div>
+
+        <div class="tr-tabs" id="tr-tabs">
+          ${COURSES.map(c => {
+            const d = courseChecked(c);
+            const complete = d === c.items.length;
+            return `<div class="tr-tab ${c.key === activeCourse ? 'active' : ''} ${complete ? 'complete' : ''}" data-key="${c.key}">
+              <span class="tr-tab-dot"></span>${c.label} (${d}/${c.items.length})
+            </div>`;
+          }).join("")}
+        </div>
+
+        <div class="tr-course-head">
+          <h2>${course.label}</h2>
+          <span class="tr-course-meta">${cDone}/${cTotal} complete</span>
+        </div>
+        <div class="tr-course-sub">${course.category}</div>
+
+        <div class="tr-list">
+          ${course.items.map((text, idx) => {
+            const checked = !!(state[course.key] && state[course.key][idx]);
+            return `<div class="tr-item ${checked ? 'checked' : ''}" data-idx="${idx}">
+              <div class="tr-stamp">${checkSvg()}</div>
+              <div class="tr-item-text">${text}</div>
+            </div>`;
+          }).join("")}
+        </div>
+
+        <button class="tr-course-reset" id="tr-reset-course">Reset this course</button>
+        <div class="tr-footer">Progress is stored automatically &mdash; close and reopen anytime.</div>
+      </div>
+    `;
+
+    root.querySelectorAll(".tr-item").forEach(el => {
+      el.addEventListener("click", () => {
+        toggleItem(course.key, parseInt(el.dataset.idx, 10));
+      });
+    });
+    root.querySelectorAll(".tr-tab").forEach(el => {
+      el.addEventListener("click", () => {
+        activeCourse = el.dataset.key;
+        render();
+      });
+    });
+    const resetCourseBtn = document.getElementById("tr-reset-course");
+    if (resetCourseBtn) {
+      resetCourseBtn.addEventListener("click", () => resetCourse(course.key));
+    }
+    const resetAllBtn = document.getElementById("tr-reset-all");
+    if (resetAllBtn) {
+      resetAllBtn.addEventListener("click", resetAll);
+    }
+  }
+
+  loadState();
+})();
+</script>
