@@ -7,7 +7,7 @@
 
 ## Roadmap
 
-![Software Fundamentals roadmap](images/software-fundamentals.jpg)
+![Software Fundamentals roadmap](./software%20fundamentals%20image.jpg)
 
 ## Topics Covered
 
