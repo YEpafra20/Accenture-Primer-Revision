@@ -7,8 +7,6 @@
 
 ## Roadmap
 
-![Software Fundamentals roadmap](./software%20fundamentals%20image.jpg)
-
 ## Topics Covered
 
 1. Logic Development
@@ -19,6 +17,8 @@
 2. Selection Statements
 3. Looping Statements
    - For Loop
+![Software Fundamentals roadmap](./software%20fundamentals%20image.jpg)
+
    - While Loop
    - Do-While Loop
    - Nested Loop
