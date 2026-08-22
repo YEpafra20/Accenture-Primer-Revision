@@ -1,4 +1,10 @@
-<div id="tracker-root"></div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accenture Primer — Revision Tracker</title>
 <style>
   #tracker-root {
     --ink: #1C2420;
@@ -187,8 +193,12 @@
     .tr-summary { flex-wrap: wrap; }
   }
 </style>
+</head>
 
+<body>
+    <div id="tracker-root"></div>
 <script>
+
 (function () {
   const COURSES = [
     {
@@ -383,11 +393,11 @@
     return arr.filter(Boolean).length;
   }
 
-  async function loadState() {
+    function loadState() {
     try {
-      const result = await window.storage.get(STORAGE_KEY, false);
-      if (result && result.value) {
-        state = JSON.parse(result.value);
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+            state = JSON.parse(raw);
       }
     } catch (e) {
       state = {};
@@ -395,9 +405,9 @@
     render();
   }
 
-  async function saveState() {
+    function saveState() {
     try {
-      await window.storage.set(STORAGE_KEY, JSON.stringify(state), false);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch (e) {
       console.error("Could not save progress", e);
     }
@@ -518,4 +528,8 @@
 
   loadState();
 })();
+
 </script>
+</body>
+
+</html>
