@@ -78,5 +78,5 @@ accenture-primer-revision/
 ---
 ## 📋 Stream Preference & Grouping Form
 
-✅ This badge makes the form link stand out and clearly tells users: *“Enter Stream Preference for Grouping Form.”* 
+✅ *“Click below to Enter Stream Preference for Grouping Form."*
 [![Enter Stream Preference for Grouping 🚀](https://img.shields.io/badge/Enter%20Stream%20Preference%20Form-blue?style=for-the-badge&logo=microsoftforms)](https://forms.cloud.microsoft/r/cvZAnZd30M?origin=lprLink)
