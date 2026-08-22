@@ -7,7 +7,7 @@
 
 ## Roadmap
 
-![Web Technologies Visual Guide](./web%20technologies.jpg)
+![Web Technologies Visual Guide](./Web%20Technologies.jpg)
 
 ## Topics Covered
 
