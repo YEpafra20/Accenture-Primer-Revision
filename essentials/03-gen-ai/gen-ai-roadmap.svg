@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1117" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#21262d" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1600" height="900" fill="url(#bgGrad)" rx="16" />
+  
+  <!-- Header Banner -->
+  <text x="800" y="55" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="28" font-weight="bold" text-anchor="middle">GENERATIVE AI — COMPLETE ROADMAP &amp; ARCHITECTURE</text>
+  <text x="800" y="85" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="15" text-anchor="middle">A Comprehensive Guide from Foundations to Transformers &amp; Industry Production</text>
+
+  <!-- ROW 1 -->
+  <!-- Card 1 -->
+  <g transform="translate(40, 110)">
+    <rect width="480" height="230" fill="url(#cardGrad)" stroke="#30363d" stroke-width="2" rx="10" />
+    <rect width="480" height="36" fill="#1f6feb" rx="10" />
+    <rect width="480" height="15" y="21" fill="#1f6feb" />
+    <text x="15" y="24" fill="#ffffff" font-family="sans-serif" font-size="15" font-weight="bold">1. Intro to Generative AI</text>
+    <text x="15" y="65" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#79c0ff">AI:</tspan> Systems that think, learn, and create.</text>
+    <text x="15" y="90" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#79c0ff">ML:</tspan> Learn patterns from data without explicit rules.</text>
+    <text x="15" y="115" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#79c0ff">Deep Learning:</tspan> Multi-layer neural nets for vision &amp; NLP.</text>
+    <text x="15" y="140" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#7ee787">Gen AI vs Predictive:</tspan> Predictive forecasts outcomes;</text>
+    <text x="25" y="160" fill="#8b949e" font-family="sans-serif" font-size="12">Gen AI synthesizes entirely new data instances.</text>
+    <text x="15" y="185" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#ffa657">Traditional AI:</tspan> Hardcoded rules &amp; static logic.</text>
+  </g>
+
+  <!-- Card 2 -->
+  <g transform="translate(560, 110)">
+    <rect width="480" height="230" fill="url(#cardGrad)" stroke="#30363d" stroke-width="2" rx="10" />
+    <rect width="480" height="36" fill="#8957e5" rx="10" />
+    <rect width="480" height="15" y="21" fill="#8957e5" />
+    <text x="15" y="24" fill="#ffffff" font-family="sans-serif" font-size="15" font-weight="bold">2. History &amp; ML Fundamentals</text>
+    <text x="15" y="65" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#d2a8ff">Evolution:</tspan> Rule systems → Neural Nets → GANs → Transformers.</text>
+    <text x="15" y="90" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#79c0ff">Supervised:</tspan> Labeled data (Classification, Regression).</text>
+    <text x="15" y="115" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#79c0ff">Unsupervised:</tspan> Unlabeled patterns (Clustering, PCA, Anomaly).</text>
+    <text x="15" y="140" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#79c0ff">Reinforcement:</tspan> Agent-environment reward loops.</text>
+    <text x="15" y="165" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#7ee787">Key Algorithms:</tspan> Trees, SVM, KNN, Random Forest, AdaBoost.</text>
+  </g>
+
+  <!-- Card 3 -->
+  <g transform="translate(1080, 110)">
+    <rect width="480" height="230" fill="url(#cardGrad)" stroke="#30363d" stroke-width="2" rx="10" />
+    <rect width="480" height="36" fill="#238636" rx="10" />
+    <rect width="480" height="15" y="21" fill="#238636" />
+    <text x="15" y="24" fill="#ffffff" font-family="sans-serif" font-size="15" font-weight="bold">3. Deep Learning &amp; Deployment</text>
+    <text x="15" y="65" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#7ee787">ANN:</tspan> Structured tabular data &amp; regression.</text>
+    <text x="15" y="90" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#7ee787">CNN:</tspan> Computer Vision, feature maps, spatial patterns.</text>
+    <text x="15" y="115" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#7ee787">Autoencoders:</tspan> Unsupervised latent feature extraction.</text>
+    <text x="15" y="145" fill="#ffa657" font-family="sans-serif" font-size="13" font-weight="bold">Production Pipeline:</text>
+    <text x="15" y="170" fill="#8b949e" font-family="sans-serif" font-size="12">Collect → Store → Clean/Prepare → Analyze → Prototype/AB → Deploy/Monitor</text>
+  </g>
+
+  <!-- ROW 2 -->
+  <!-- Card 4 -->
+  <g transform="translate(40, 370)">
+    <rect width="480" height="230" fill="url(#cardGrad)" stroke="#30363d" stroke-width="2" rx="10" />
+    <rect width="480" height="36" fill="#da3633" rx="10" />
+    <rect width="480" height="15" y="21" fill="#da3633" />
+    <text x="15" y="24" fill="#ffffff" font-family="sans-serif" font-size="15" font-weight="bold">4. Generative Models Theory</text>
+    <text x="15" y="65" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#ff7b72">Generative:</tspan> Models joint distribution <tspan font-family="monospace">P(X, Y)</tspan>.</text>
+    <text x="25" y="85" fill="#8b949e" font-family="sans-serif" font-size="12">Generates brand new samples (e.g. GAN generating faces).</text>
+    <text x="15" y="115" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#ff7b72">Discriminative:</tspan> Models conditional probability <tspan font-family="monospace">P(Y|X)</tspan>.</text>
+    <text x="25" y="135" fill="#8b949e" font-family="sans-serif" font-size="12">Evaluates boundaries (e.g. CNN matching a face to database).</text>
+    <text x="15" y="165" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#79c0ff">Probability Lens:</tspan> Guiding sampling in latent space.</text>
+  </g>
+
+  <!-- Card 5 -->
+  <g transform="translate(560, 370)">
+    <rect width="480" height="230" fill="url(#cardGrad)" stroke="#30363d" stroke-width="2" rx="10" />
+    <rect width="480" height="36" fill="#bf8700" rx="10" />
+    <rect width="480" height="15" y="21" fill="#bf8700" />
+    <text x="15" y="24" fill="#ffffff" font-family="sans-serif" font-size="15" font-weight="bold">5. VAEs &amp; GANs</text>
+    <text x="15" y="65" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#e3b341">VAEs (Variational Autoencoders):</tspan></text>
+    <text x="25" y="85" fill="#8b949e" font-family="sans-serif" font-size="12">Input → Encoder → Latent Space (μ, σ) → Sampling → Reconstructed Output</text>
+    <text x="15" y="120" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#e3b341">GANs (Adversarial Networks):</tspan></text>
+    <text x="25" y="140" fill="#e6edf3" font-family="sans-serif" font-size="12"><tspan fill="#7ee787">Generator:</tspan> Creates realistic synthetic instances from noise.</text>
+    <text x="25" y="160" fill="#e6edf3" font-family="sans-serif" font-size="12"><tspan fill="#ff7b72">Discriminator:</tspan> Critiques real vs generated data.</text>
+    <text x="25" y="180" fill="#8b949e" font-family="sans-serif" font-size="12">Zero-sum min-max game drives continuous improvement.</text>
+  </g>
+
+  <!-- Card 6 -->
+  <g transform="translate(1080, 370)">
+    <rect width="480" height="230" fill="url(#cardGrad)" stroke="#30363d" stroke-width="2" rx="10" />
+    <rect width="480" height="36" fill="#8957e5" rx="10" />
+    <rect width="480" height="15" y="21" fill="#8957e5" />
+    <text x="15" y="24" fill="#ffffff" font-family="sans-serif" font-size="15" font-weight="bold">6. Sequential Modeling (RNN / LSTM / GRU)</text>
+    <text x="15" y="65" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#d2a8ff">RNNs:</tspan> Retain hidden state history for sequences.</text>
+    <text x="15" y="90" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#d2a8ff">LSTM:</tspan> Forget/Input/Output gates mitigate vanishing gradients.</text>
+    <text x="15" y="115" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#d2a8ff">GRU:</tspan> Streamlined architecture with fewer parameters.</text>
+    <text x="15" y="145" fill="#79c0ff" font-family="sans-serif" font-size="13" font-weight="bold">Use Cases:</text>
+    <text x="15" y="170" fill="#8b949e" font-family="sans-serif" font-size="12">Text generation, DNA sequences, speech synthesis, time-series forecasting.</text>
+  </g>
+
+  <!-- ROW 3 -->
+  <!-- Card 7 & 8 -->
+  <g transform="translate(40, 630)">
+    <rect width="740" height="230" fill="url(#cardGrad)" stroke="#30363d" stroke-width="2" rx="10" />
+    <rect width="740" height="36" fill="#1f6feb" rx="10" />
+    <rect width="740" height="15" y="21" fill="#1f6feb" />
+    <text x="15" y="24" fill="#ffffff" font-family="sans-serif" font-size="15" font-weight="bold">7 &amp; 8. Transformers &amp; Attention Mechanisms</text>
+    <text x="15" y="65" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#79c0ff">Self-Attention:</tspan> Weights contextual relationships across all tokens dynamically.</text>
+    <text x="15" y="90" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#79c0ff">GPT (Autoregressive Decoder):</tspan> Predicts next token sequentially.</text>
+    <text x="15" y="115" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#79c0ff">BERT (Bidirectional Encoder):</tspan> Reads full context left-and-right.</text>
+    <text x="15" y="140" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#79c0ff">T5 (Text-to-Text):</tspan> Unifies translation, classification, summarization.</text>
+    <text x="15" y="165" fill="#8b949e" font-family="sans-serif" font-size="12">• RoBERTa (Optimized BERT) | DistilBERT (Fast/Light) | ALBERT (Parameter sharing)</text>
+  </g>
+
+  <!-- Card 9 -->
+  <g transform="translate(820, 630)">
+    <rect width="740" height="230" fill="url(#cardGrad)" stroke="#30363d" stroke-width="2" rx="10" />
+    <rect width="740" height="36" fill="#238636" rx="10" />
+    <rect width="740" height="15" y="21" fill="#238636" />
+    <text x="15" y="24" fill="#ffffff" font-family="sans-serif" font-size="15" font-weight="bold">9. Real-World Applications</text>
+    <text x="15" y="65" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#7ee787">Publishing &amp; Media:</tspan> GPT models for dynamic drafting &amp; code generation.</text>
+    <text x="15" y="90" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#7ee787">Healthcare:</tspan> DeepChem &amp; GANs for molecular synthesis and drug discovery.</text>
+    <text x="15" y="115" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#7ee787">Design &amp; Real Estate:</tspan> DALL-E, StyleGAN for interior &amp; fashion design.</text>
+    <text x="15" y="140" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#7ee787">Finance:</tspan> Synthetic anomaly generation for advanced fraud detection.</text>
+    <text x="15" y="165" fill="#e6edf3" font-family="sans-serif" font-size="13">• <tspan font-weight="bold" fill="#7ee787">Gaming:</tspan> Procedural landscape engines, MuseNet audio &amp; RL behaviors.</text>
+  </g>
+</svg>
