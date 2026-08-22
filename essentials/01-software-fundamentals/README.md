@@ -7,7 +7,7 @@
 
 ## Roadmap
 
-![Software Fundamentals roadmap](https://chatgpt.com/s/m_6a8923e738ec8191802ba7129b101504)
+![Software Fundamentals roadmap](images/software-fundamentals.jpg)
 
 ## Topics Covered
 
