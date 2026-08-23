@@ -308,8 +308,10 @@ Testing of software work products manually, to find errors. Techniques include: 
 
 Also called glass box testing, structural testing, clear box testing, black box testing, white box testing.
 
-- **Black Box Testing** — test cases are designed depending on the functionality
-- **White Box Testing** — deals with the internal logic and structure of the code
+- **Black Box Testing** — test cases are designed depending on the functionality. it identifies hidden functionalities.
+- the Black box Testing techniques are Equivalence class partitioning , Boundary Value Analysis ,Cause Effect Analysis and Graphing , Decision Table.
+- **White Box Testing** — deals with the internal logic and structure of the code . it identifies unreachable Code and checks for code coverage.
+- the White box testing technique is Basic path testing.
 
 ### 7.4 Software Maintenance
 
