@@ -35,12 +35,12 @@ A diagrammatic representation of an algorithm, workflow, or process.
 
 | Symbol | Meaning |
 |---|---|
-| START / END | Denotes start/stop operations |
-| INPUT / OUTPUT | Denotes getting inputs and displaying outputs |
-| PROCESS | Denotes actions or operations performed |
-| FLOW DIRECTION | Denotes the direction of the process flow |
-| CONNECTOR | Connects steps in the process |
-| DECISION | Indicates choices/questions to be answered (usually Yes/No or True/False) |
+| START / END | Denotes start/stop operations | oval shape symbol
+| INPUT / OUTPUT | Denotes getting inputs and displaying outputs | parellogram shape symbol
+| PROCESS | Denotes actions or operations performed | Rectangle shape symbol
+| FLOW DIRECTION | Denotes the direction of the process flow | arrow symbol
+| CONNECTOR | Connects steps in the process | circle shape symbol
+| DECISION | Indicates choices/questions to be answered (usually Yes/No or True/False) | diamond shape symbol
 
 ### 1.3 Defining Variables, Constants & Expressions
 
@@ -72,7 +72,9 @@ An informal way of describing algorithms, using a combination of natural languag
 
 ## 2. Selection Statements
 
-Selection statements allow a program to make **decisions** and choose between different paths of execution based on a condition (e.g., if a condition is true or false). They work together with relational and logical operators covered in [Section 1.4](#14-commonly-used-operators-and-operations) to control the flow of a program.
+Selection statements allow a program to make **decisions** and choose between different paths of execution based on a condition (e.g., if a condition is true or false). They work together with relational and logical operators covered in [Section 1.4](#14-commonly-used-operators-and-operations) to control the flow of a program. 
+selection statements can be categorised as (simple if, if-else, else-if ladder, nested if)
+[Dry Run - Manual execution of steps in an algorithm is called as Dry Run.]
 
 ---
 
@@ -139,7 +141,8 @@ A collection of homogeneous data stored sequentially. An array is a variable use
 
 ### 4.2 Two-Dimensional Arrays
 
-An array of arrays (a list of arrays).
+An array of arrays (a list of arrays). Elements in array is treated like a Matrix and can be accessed using index of array. 
+2-D arrays are represented as rows & columns.
 
 ### 4.3 Manipulating Arrays
 
@@ -149,6 +152,7 @@ Various operations can be performed on an array:
 - Deleting elements
 - Searching elements
 - Sorting elements
+- Accessing elements
 
 ---
 
@@ -200,9 +204,9 @@ Planning & Analysis → Design → Implement → Test → Deploy → Maintain
    - **Software Testing:** Process of verifying and validating that a software application or program meets the business and technical requirements
    - **Levels of Testing:**
      - **Unit Testing** — done by the developer, on an individual module, for functional correctness
-     - **System Testing** — checks for interface errors between the integrated components
+     - **System Testing** — checks for interface errors between the integrated components (Functional testing and performance testing)
      - **Integration Testing** — tests the system as a whole, checking functional and non-functional correctness
-     - **Acceptance Testing** — done by the end user, for system acceptance
+     - **Acceptance Testing** — done by the end user, for system acceptance (alpha testing and beta testing)
    - **Verification, Validation & Defects:**
      - **Verification** — confirms the software meets its technical specifications
      - **Validation** — confirms the software meets the business requirements
@@ -215,11 +219,11 @@ Planning & Analysis → Design → Implement → Test → Deploy → Maintain
 | Model | Description |
 |---|---|
 | **Waterfall Model** | Also known as the linear sequential model: Analysis → Design → Coding → Testing → Deployment → Maintenance |
-| **V-Model** | Verification and Validation Model |
+| **V-Model** | Verification and Validation Model,its an extension of waterfall model where testing is emphasized more than in waterfall model. testing is done from earliest phases and each phase must be completed before the next phase begins. |
 | **Prototype Model** | Developing a model for the system to be built. Two types: **Throw away** (used when requirements are unclear; built and given to the end user for review, then discarded) and **Evolutionary** (used when requirements are unstable; refined repeatedly by the developer until the prototype becomes the final system) |
 | **RAD Model** | Rapid Application Development — modules developed in parallel as if they were mini-projects; high speed; component-based approach. Phases: 1) Business Modelling, 2) Data Modelling, 3) Process Modelling, 4) Application Generation, 5) Testing and Turnover |
-| **Incremental Model** | Uses incremental development cycles |
-| **Spiral Model** | Proposed by Barry Boehm in 1986. Suggested for high-risk-scenario-based projects. The number of loops of the spiral is unknown and varies from project to project |
+| **Incremental Model** | Uses incremental development cycles, the incremental model priorities requirements of the system and implements them in small manageable units called as modules.each module undergoes analysis,design,coding and testing. |
+| **Spiral Model** | Proposed by Barry Boehm in 1986. Suggested for high-risk-scenario-based projects. The number of loops of the spiral is unknown and varies from project to project .each loop of the spiral represents a phase of software development process.|
 
 ---
 
@@ -238,14 +242,18 @@ Planning & Analysis → Design → Implement → Test → Deploy → Maintain
 
 ### 6.2 Requirement Analysis — SRS & ERD
 
-**Software Requirements Specification (SRS) Document:**
+**Software Requirements Specification (SRS) Document:** - it is a contract between development team and customer. SRS document focuses on "What needs to be done" and carefully avoids the solution ("how to do") aspects.
 
-- **Functional requirements** — specify the input, the task, and the output
-- **Non-functional requirements** — specify the overall quality attributes and constraints
-- **Constraints on the system** — specify the restrictions
+- **Functional requirements** — specify the input, the task, and the output. it describes a service that a software must offer.
+- **Non-functional requirements** — specify the overall quality attributes and constraints. it describes qualitative attributes of a software such as (Maintainablity,portablity,usablity,reliablity,robustness,security,performance etc.)
+- **Constraints on the system** — specify the restrictions ,
+- SRS Constraints are (Standard compliance , hardware to be used , operation system, DBMS to be used ,Capablities of I/O devices ,Data Representation)
 
 **Entity Relationship Diagram (ERD):**
-Part of data modeling that focuses on defining and analyzing the data needed to support the business.
+Part of data modeling that focuses on defining and analyzing the data needed to support the business. it represents the conceptual lebvel of database design.
+-Entity -> an entity is an business object that represents a group or category of data.
+-Relationship -> specifies the relations among the entities. it is characterised by Cardinality and Optionality.
+-Attribute -> Properties of an entity.
 
 ### 6.3 Software Design
 
@@ -300,8 +308,10 @@ Testing of software work products manually, to find errors. Techniques include: 
 
 Also called glass box testing, structural testing, clear box testing, black box testing, white box testing.
 
-- **Black Box Testing** — test cases are designed depending on the functionality
-- **White Box Testing** — deals with the internal logic and structure of the code
+- **Black Box Testing** — test cases are designed depending on the functionality. it identifies hidden functionalities.
+- the Black box Testing techniques are Equivalence class partitioning , Boundary Value Analysis ,Cause Effect Analysis and Graphing , Decision Table.
+- **White Box Testing** — deals with the internal logic and structure of the code . it identifies unreachable Code and checks for code coverage.
+- the White box testing technique is Basic path testing.
 
 ### 7.4 Software Maintenance
 
