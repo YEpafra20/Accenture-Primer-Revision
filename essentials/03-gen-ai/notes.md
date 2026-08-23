@@ -152,7 +152,7 @@ A **neural network** is a series of algorithms that attempts to recognize underl
 | Model Type | Models |
 |---|---|
 | **Generative** | The joint probability `p(X, Y)` |
-| **Discriminative** | The conditional probability `P(Y \| X)` |
+| **Discriminative** | The conditional probability `P(Y | X)` |
 
 ### 4.3 Example — Facial Recognition
 
