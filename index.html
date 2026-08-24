@@ -162,11 +162,30 @@
         noData: 'No results found.',
         depth: 4
       },
-      formatUpdated: '{MM}/{DD} {HH}:{mm}'
+      formatUpdated: '{MM}/{DD} {HH}:{mm}',
+      doneEach: function () {
+        if (window.goatcounter && window.goatcounter.count) {
+          window.goatcounter.count({
+            path: window.location.pathname + window.location.hash
+          });
+        }
+      }
     };
 
     document.addEventListener('DOMContentLoaded', function () {
+      var goatCounterCode = '';
       var btn = document.getElementById('sidebar-toggle');
+
+      if (goatCounterCode) {
+        window.goatcounter = { count: function () { window.goatcounter.count.q.push(arguments); } };
+        window.goatcounter.count.q = [];
+        var analyticsScript = document.createElement('script');
+        analyticsScript.async = true;
+        analyticsScript.src = 'https://gc.zgo.at/count.js';
+        analyticsScript.dataset.goatcounter = 'https://' + goatCounterCode + '.goatcounter.com/count';
+        document.head.appendChild(analyticsScript);
+      }
+
       btn.addEventListener('click', function () {
         var isCollapsed = document.body.classList.toggle('sidebar-collapsed');
         btn.setAttribute('aria-expanded', String(!isCollapsed));

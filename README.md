@@ -42,6 +42,12 @@ accenture-primer-revision/
 3. Add revision notes in the corresponding notes.md file.
 4. Update the progress tracker below as you complete each course.
 
+## Visitor metrics
+
+Repository owners can view GitHub page views, unique visitors, clones, and referrers from the [repository traffic dashboard](https://github.com/YEpafra20/Accenture-Primer-Revision/graphs/traffic). GitHub keeps this traffic data available for a limited period.
+
+The published Docsify site also supports optional privacy-friendly page analytics through [GoatCounter](https://www.goatcounter.com/). To enable it, create a GoatCounter site and set `goatCounterCode` in `index.html` to the site code. Leave it empty to keep analytics disabled.
+
 ## 🌱 Getting Started
 
 ## Essentials
