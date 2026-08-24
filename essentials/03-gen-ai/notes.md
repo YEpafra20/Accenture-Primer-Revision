@@ -244,13 +244,355 @@ Model: `Y = f(X)`
 
 ## 5. Variational Autoencoders (VAEs)
 
-> Placeholder — the source notepad listed this as a section header without further detail. Add VAE architecture (encoder, latent space, decoder), the reparameterization trick, and typical use cases here once available.
+## Case Study: Real-Time Anomaly Detection Using Variational Autoencoders (VAEs)
+
+### 5.1 Introduction
+Variational Autoencoders (VAEs) are a class of generative models used in machine learning and deep learning. They have found applications in a wide range of fields, including image generation, data compression, and natural language processing. In this case study, we explore a real-time application of VAEs in the context of anomaly detection in industrial equipment.
+
+### 5.2. Background
+Imagine a manufacturing plant that produces various components using heavy machinery. The smooth operation of these machines is crucial for maintaining production efficiency and product quality. Any malfunction or anomaly in the machinery can lead to costly downtime and defects in the products. To prevent such issues, real-time anomaly detection is essential.
+
+### 5.3. The Problem
+The manufacturing plant has various sensors that continuously monitor the machinery's performance, collecting data such as temperature, pressure, vibration, and more. The challenge is to detect anomalies in this data as soon as they occur to minimize downtime and maintenance costs.
+
+### 5.4. Solution Using VAEs
+Variational Autoencoders offer an effective solution for real-time anomaly detection in this scenario. Here's how it works:
+1. **Data Collection:** Data from sensors is collected over time, forming a time series dataset containing both normal operating conditions and instances with anomalies.
+2. **Data Preprocessing:** The data is preprocessed to normalize and clean it, ensuring it is suitable for training the VAE.
+3. **VAE Training:** A VAE model is trained using preprocessed data. The VAE learns a compressed representation of the data, effectively encoding the normal patterns in the machinery's behavior.
+
+---
+
+### 5.5 Implementation Code & Step-by-Step Breakdown
+
+### Step 1: Data Ingestion
+```python
+import numpy as np
+import pandas as pd
+
+data = pd.read_csv('./anamoly_data.csv')
+data.head(5)
+```
+
+**Output:**
+```text
+            Timestamp  Temperature     Pressure  Vibration
+0  2023-01-01 00:00:00    25.000000  1100.000000   0.000000
+1  2023-01-01 00:01:00    25.021817  1099.996192   0.020906
+2  2023-01-01 00:02:00    25.043633  1099.984770   0.041582
+3  2023-01-01 00:03:00    25.065448  1099.965732   0.061803
+4  2023-01-01 00:04:00    25.087262  1099.939083   0.081347
+```
+**Explanation:** Data from sensors collected over time is loaded from the CSV file `'anamoly_data.csv'`.
+
+### Step 2: Data Preparation
+```python
+import tensorflow as tf
+from tensorflow.keras.layers import Input, Dense, Lambda
+from tensorflow.keras.models import Model
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.losses import mse
+
+# ---- DATA PREPARATION ----
+sensor_data = np.column_stack((data['Temperature'].values,
+                               data['Pressure'].values, 
+                               data['Vibration'].values))
+```
+**Explanation:** The code imports necessary modules from TensorFlow and Keras for building neural networks. It then combines the 'Temperature', 'Pressure', and 'Vibration' columns from the DataFrame into a 2D array called `sensor_data`.
+
+### Step 3: VAE Model Architecture
+```python
+# ---- VAE MODEL ----
+latent_dim = 2
+input_dim = 3
+
+encoder_inputs = Input(shape=(input_dim,))
+x = Dense(128, activation='relu')(encoder_inputs)
+z_mean = Dense(latent_dim)(x)
+z_log_var = Dense(latent_dim)(x)
+
+def sampling(args):
+    z_mean, z_log_var = args
+    epsilon = tf.keras.backend.random_normal(shape=(tf.shape(z_mean)[0], latent_dim))
+    return z_mean + tf.exp(0.5 * z_log_var) * epsilon
+
+z = Lambda(sampling)([z_mean, z_log_var])
+
+decoder_inputs = Input(shape=(latent_dim,))
+x = Dense(128, activation='relu')(decoder_inputs)
+outputs = Dense(input_dim, activation='linear')(x)
+
+decoder = Model(decoder_inputs, outputs)
+vae = Model(encoder_inputs, decoder(z))
+```
+**Explanation:** The code establishes a Variational Autoencoder (VAE) that compresses 3D input data into a 2D latent space and then decodes it back. In a VAE, the sampling step introduces randomness, ensuring that the model doesn't simply learn a deterministic mapping. Instead, it learns a distribution parameters (`z_mean` and `z_log_var`) in the latent space, which aids in generalization.
+
+### Step 4: Custom Loss Layer
+```python
+class VAELossLayer(tf.keras.layers.Layer):
+    def __init__(self, **kwargs):
+        super(VAELossLayer, self).__init__(**kwargs)
+        
+    def call(self, inputs):
+        x, x_decoded_mean, z_log_var, z_mean = inputs
+        xent_loss = tf.reduce_mean(mse(x, x_decoded_mean))
+        kl_term = 1 + z_log_var - tf.square(z_mean) - tf.exp(z_log_var)
+        kl_loss = -0.5 * tf.reduce_mean(kl_term)
+        loss = xent_loss + kl_loss
+        self.add_loss(loss)
+        return x 
+```
+**Explanation:** Defines a custom Keras layer, `VAELossLayer`, which calculates the overall loss by combining reconstruction loss (MSE) and Kullback-Leibler (KL) divergence. This dual loss ensures the VAE learns continuous, meaningful encodings in the latent space.
+
+### Step 5: Compilation and Training
+```python
+outputs = decoder(z)
+vae_outputs = VAELossLayer()([encoder_inputs, outputs, z_log_var, z_mean])
+vae = Model(encoder_inputs, vae_outputs)
+vae.compile(optimizer=Adam())
+
+# ---- TRAIN VAE ----
+train_size = int(0.8 * len(sensor_data))
+x_train = sensor_data[:train_size]
+x_valid = sensor_data[train_size:]
+
+epochs = 50
+batch_size = 32
+
+vae.fit(x_train, x_train,
+        shuffle=True,
+        epochs=epochs,
+        batch_size=batch_size,
+        validation_data=(x_valid, x_valid))
+```
+**Output:**
+```text
+Epoch 1/50
+108/108 [==============================] - 1s 5ms/step - loss: 253493.5781 - val_loss: 84043.8594
+Epoch 2/50
+108/108 [==============================] - 0s 4ms/step - loss: 44589.9336 - val_loss: 27646.7246
+...
+Epoch 50/50
+108/108 [==============================] - 1s 5ms/step - loss: 257.5038 - val_loss: 362.1933
+```
+**Explanation:** Data is split into training (80%) and validation (20%) sets to prevent overfitting. The model iteratively updates its internal weights across 50 epochs using the Adam optimizer to minimize reconstruction failure on baseline data.
+
+### Step 6: Anomaly Profiling
+```python
+# ---- ANOMALY DETECTION ----
+reconstructed_train = vae.predict(x_train)
+train_error = np.mean(np.square(x_train - reconstructed_train), axis=-1)
+threshold = np.percentile(train_error, 99)
+
+reconstructed_data = vae.predict(sensor_data)
+reconstruction_error = np.mean(np.square(sensor_data - reconstructed_data), axis=-1)
+anomalies = reconstruction_error > threshold
+
+print("No. of anomalies in the given data: {} out of {}".format(np.sum(anomalies), len(sensor_data)))
+```
+**Output:**
+```text
+No. of anomalies in the given data: 47 out of 4321
+```
+**Explanation:** The script calculates the reconstruction errors for all data points. By setting a strict boundary at the 99th percentile of normal operational variance, any data point generating an error *above* this threshold is flagged as an active equipment anomaly.
+
+### Step 7: Visualization
+```python
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(15, 6))
+plt.plot(data['Timestamp'], reconstruction_error, label='Reconstruction Error')
+plt.axhline(y=threshold, color='r', linestyle='--', label='Threshold')
+plt.title("Reconstruction Error Over Time")
+plt.legend()
+plt.xlabel("Timestamp")
+plt.ylabel("Reconstruction Error")
+plt.xticks(rotation=45)
+plt.gca().xaxis.set_major_locator(plt.MaxNLocator(nbins=40))
+plt.tight_layout()
+plt.show()
+```
+**Explanation:** The resulting chart plots the calculated **Reconstruction Error** (blue line) against the **Statistical Threshold** (red dashed line) over time. Because the VAE only masters reconstructing normal operational patterns, any anomaly generates a heavy error spike that penetrates above the threshold line, identifying the exact timestamp of equipment malfunction.
+
+---
+
+### 5.6 Theoretical & Mathematical Framework
+
+### Core Objectives
+The Variational Autoencoder balances reconstruction fidelity with latent space regularity via a composite loss function:
+
+$$\text{Total Loss} = \text{Reconstruction Loss (MSE)} + \text{KL Divergence}$$
+
+### 1. Mean Squared Error (MSE)
+Measures the distortion between the ground truth sensor telemetry $X$ and the model's decoded reconstruction $\hat{X}$:
+
+$$\text{MSE} = \frac{1}{N}\sum_{i=1}^{N}(X_i - \hat{X}_i)^2$$
+
+### 2. Kullback-Leibler (KL) Divergence
+Acts as a regularizer forcing the latent distribution to conform to a standard normal distribution $\mathcal{N}(0, I)$, preventing isolated data memorization:
+
+$$\text{KL Divergence} = -\frac{1}{2} \sum \left( 1 + \log(\sigma^2) - \mu^2 - \sigma^2 \right)$$
+
 
 ---
 
 ## 6. Generative Adversarial Networks (GANs)
 
-> Placeholder — the source notepad listed this as a section header without further detail beyond earlier mentions (GANs generating faces from scratch in the Facial Recognition example, and GANs used across Healthcare, Fashion & Design, and Finance applications in Section 9). Add the Generator vs Discriminator architecture, the adversarial training loop, and GAN variants here once available.
+# Case Study: Using GANs on the CIFAR-10 Dataset
+
+### 1. Introduction
+Generative Adversarial Networks (GANs) utilize a two-network game theory framework—consisting of a Generator and a Discriminator—to generate synthetic data that mimics a real training distribution. This case study focuses on using GANs to augment the CIFAR-10 dataset.
+
+### 2. Industry Context & Problem
+*   **Dataset Limitations:** CIFAR-10 contains 60,000 32 × 32 color images across 10 classes. However, it provides only 6,000 images per class. 
+*   **The Problem:** This limited sample size restricts deep neural networks from achieving maximum generalization and robustness.
+*   **The Goal:** Synthesize high-quality, diverse, and contextually relevant novel images to augment the baseline dataset.
+
+### 3. GAN Solution Architecture
+1.  **Generator (G):** Acts as a structural mapping function. It ingests a 100-dimensional random noise vector (z) and transforms it into a synthetic 32 × 32 × 3 image.
+2.  **Discriminator (D):** Acts as a binary classifier. It ingests both genuine data (x) and synthetic creations (G(z)) to output a probability score indicating whether the input image is real (1) or fake (0).
+3.  **Adversarial Optimization:** G maximizes the probability of D making a mistake, while D minimizes its classification error.
+
+---
+
+### 4. Implementation Code & Breakdown
+
+### Step 1: Core Tool Import
+```python
+import numpy as np
+import tensorflow as tf
+from tensorflow.keras.datasets import cifar10
+from tensorflow.keras.layers import Dense, Reshape, UpSampling2D, Conv2D, BatchNormalization, LeakyReLU, Flatten, Input
+from tensorflow.keras.models import Model, Sequential
+from tensorflow.keras.optimizers import Adam
+import matplotlib.pyplot as plt
+```
+*   **Mechanics:** Prepares structural components, multidimensional array manipulation engines, dataset access tools, and chart rendering utilities.
+
+### Step 2: Generator Architecture (G)
+```python
+def build_generator():
+    model = Sequential()
+    model.add(Dense(128 * 8 * 8, activation="relu", input_shape=(100,)))
+    model.add(Reshape((8, 8, 128)))
+    model.add(UpSampling2D())
+    model.add(Conv2D(128, kernel_size=3, padding="same"))
+    model.add(BatchNormalization())
+    model.add(LeakyReLU(alpha=0.01))
+    model.add(UpSampling2D())
+    model.add(Conv2D(64, kernel_size=3, padding="same"))
+    model.add(BatchNormalization())
+    model.add(LeakyReLU(alpha=0.01))
+    model.add(Conv2D(3, kernel_size=3, padding="same", activation='tanh'))
+    return model
+```
+*   **Mechanics:** Projects a latent vector up to an 8 × 8 × 128 feature space. It applies dual `UpSampling2D` layers to double spatial dimensions step-by-step (8 → 16 → 32). The final layer uses a `tanh` activation to restrict output pixels to a balanced \([-1, 1]\) structural range.
+
+### Step 3: Discriminator Architecture (D)
+```python
+def build_discriminator():
+    model = Sequential()
+    model.add(Conv2D(32, kernel_size=3, strides=2, input_shape=(32, 32, 3), padding="same"))
+    model.add(LeakyReLU(alpha=0.01))
+    model.add(Conv2D(64, kernel_size=3, strides=2, padding="same"))
+    model.add(BatchNormalization())
+    model.add(LeakyReLU(alpha=0.01))
+    model.add(Conv2D(128, kernel_size=3, strides=2, padding="same"))
+    model.add(BatchNormalization())
+    model.add(LeakyReLU(alpha=0.01))
+    model.add(Flatten())
+    model.add(Dense(1, activation='sigmoid'))
+    return model
+```
+*   **Mechanics:** Uses downsampling convolutions via a spatial `strides=2` configuration instead of traditional max pooling. This preserves spatial relationships while flattening the output down to a scalar binary probability via `sigmoid`.
+
+### Step 4: Network Compilation & Integration
+```python
+# Compilation Parameters
+optimizer = tf.keras.optimizers.legacy.Adam(0.0002, 0.5)
+
+discriminator = build_discriminator()
+discriminator.compile(loss='binary_crossentropy', optimizer=optimizer, metrics=['accuracy'])
+
+generator = build_generator()
+z = Input(shape=(100,))
+img = generator(z)
+
+# Freeze Discriminator weight adjustments when training the combined adversarial model
+discriminator.trainable = False
+
+validity = discriminator(img)
+combined = Model(z, validity)
+combined.compile(loss='binary_crossentropy', optimizer=optimizer)
+```
+*   **Mechanics:** Configures a dedicated Adam optimizer featuring a low learning rate (2×10⁻⁴) and a relaxed momentum parameter (β₁=0.5). Freezing `discriminator.trainable` inside the unified architecture ensures that *only* the generator's internal weights update during adversarial iterations.
+
+### Step 5: Adversarial Training Loop
+```python
+def train(epochs, batch_size=128, save_interval=50):
+    (x_train, _), (_, _) = cifar10.load_data()
+    # Normalize images from pixel range [0, 255] to Tanh output bounds [-1, 1]
+    x_train = (x_train.astype(np.float32) - 127.5) / 127.5
+    
+    valid = np.ones((batch_size, 1))
+    fake = np.zeros((batch_size, 1))
+    
+    for epoch in range(epochs):
+        # --------------------- TRAIN DISCRIMINATOR ---------------------
+        idx = np.random.randint(0, x_train.shape[0], batch_size)
+        imgs = x_train[idx]
+        
+        noise = np.random.normal(0, 1, (batch_size, 100))
+        gen_imgs = generator.predict(noise)
+        
+        d_loss_real = discriminator.train_on_batch(imgs, valid)
+        d_loss_fake = discriminator.train_on_batch(gen_imgs, fake)
+        d_loss = 0.5 * np.add(d_loss_real, d_loss_fake)
+        
+        # --------------------- TRAIN GENERATOR ---------------------
+        noise = np.random.normal(0, 1, (batch_size, 100))
+        g_loss = combined.train_on_batch(noise, valid)
+        
+        if epoch % save_interval == 0:
+            print(f"{epoch}/{epochs} [D loss: {d_loss[0]:.4f} | D acc: {100*d_loss[1]:.2f}%] [G loss: {g_loss:.4f}]")
+            save_imgs(epoch)
+```
+*   **Mechanics:** Tracks binary validation metrics (`valid = 1`, `fake = 0`). It continuously computes loss for the real and synthetic imagery batches separately. The generator updates its parameters using backpropagated signals from the frozen critic weights to improve its realism.
+
+### Step 6: Visual Diagnostics Evaluation
+```python
+def save_imgs(epoch):
+    r, c = 5, 5
+    noise = np.random.normal(0, 1, (r * c, 100))
+    gen_imgs = generator.predict(noise)
+    # Rescale pixel dimensions back to [0, 1] for visualization
+    gen_imgs = 0.5 * gen_imgs + 0.5
+    
+    fig, axs = plt.subplots(r, c)
+    cnt = 0
+    for i in range(r):
+        for j in range(c):
+            axs[i,j].imshow(gen_imgs[cnt, :,:,:])
+            axs[i,j].axis('off')
+            cnt += 1
+    plt.show()
+```
+*   **Mechanics:** Projects a static 5 × 5 array of synthetic images across tracking checkpoints. This allows you to visually audit generation quality improvements and monitor convergence patterns.
+
+### Step 7: Execution Launch
+```python
+train(epochs=25, batch_size=32, save_interval=5)
+```
+
+---
+
+## 5. Key Challenges & Mitigation Strategies
+
+*   **Mode Collapse:** The generator collapses into generating repetitive data points across a limited subset of classes.
+    *   *Mitigation:* Inject structural weight noise, leverage label smoothing, or pivot to alternative mathematical distribution objectives like Wasserstein GAN (WGAN).
+*   **Training Instability:** Non-convergent adversarial optimization states often result in `NaN` loss tracking arrays or chaotic outputs.
+    *   *Mitigation:* Apply gradient clipping constraints, implement spectral normalization on downsampling convolutions, or balance capacity metrics across your networks.
+
 
 ---
 
