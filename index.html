@@ -133,6 +133,22 @@
   </div>
   <div id="app"></div>
   <script>
+      function normalizeLegacyDocsifyRoute() {
+        var hash = window.location.hash;
+        var legacyRoute = hash.match(/^#\/[^?]+\/README\?id=(.+)$/i);
+
+        if (!legacyRoute) {
+          return;
+        }
+
+        var targetRoute = decodeURIComponent(legacyRoute[1]);
+        if (/^\/(essentials|electives)\/[^/]+\/notes$/.test(targetRoute)) {
+          window.location.hash = targetRoute;
+        }
+      }
+
+      normalizeLegacyDocsifyRoute();
+
     window.$docsify = {
       name: 'Accenture Primer Revision',
       loadSidebar: 'sidebar.md',
@@ -160,6 +176,7 @@
     };
 
     document.addEventListener('DOMContentLoaded', function () {
+      window.addEventListener('hashchange', normalizeLegacyDocsifyRoute);
       var goatCounterCode = '';
       var btn = document.getElementById('sidebar-toggle');
 
@@ -179,11 +196,20 @@
       });
 
       document.addEventListener('click', function (event) {
-        if (event.target.closest('.sidebar-nav a')) {
+        var link = event.target.closest('a');
+
+        if (link && link.matches('.markdown-section a[href^="#/"]')) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          window.location.hash = link.getAttribute('href').slice(1);
+          return;
+        }
+
+        if (link && link.closest('.sidebar-nav')) {
           document.body.classList.add('sidebar-collapsed');
           btn.setAttribute('aria-expanded', 'false');
         }
-      });
+      }, true);
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
