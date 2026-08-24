@@ -45,9 +45,82 @@
 
 ## 2. Brief History of Generative AI
 
-> Placeholder — the source notepad listed this as a section header but moved directly into Machine Learning fundamentals without further historical detail. Add a timeline (e.g., early generative models → VAEs → GANs → Transformers → modern LLMs) here once available.
+**1. Generative Adversarial Nets (GAN)**
+
+**Definition:**  
+A deep learning framework where two neural networks (Generator and Discriminator) compete to generate realistic data.
+
+### Key Points
+- Introduced by **Ian Goodfellow (2014)**.
+- **Generator (G):** Creates fake data from random noise.
+- **Discriminator (D):** Identifies real vs fake data.
+- Trained using a **Minimax (Adversarial) Game**.
+- Produces highly realistic images, text, and audio.
+
+**Flow:**
+Noise → Generator → Fake Data → Discriminator → Real/Fake
 
 ---
+
+**2. Auto-Encoding Variational Bayes (VAE)**
+
+**Definition:**  
+A probabilistic generative model that learns compressed latent representations and reconstructs the original data.
+
+#### Key Points
+- Introduced by **Diederik P. Kingma & Max Welling (2013)**.
+- **Encoder:** Converts input into latent vector (z).
+- **Decoder:** Reconstructs data from the latent vector.
+- Uses the **Reparameterization Trick** for efficient training.
+- Useful for image generation, denoising, and representation learning.
+
+**Flow:**
+Input → Encoder → Latent Space (z) → Decoder → Reconstructed Output
+
+**3. Attention Is All You Need (Transformer)**
+
+**Definition:**  
+A deep learning architecture that uses **self-attention** instead of RNNs or CNNs to process sequential data efficiently.
+
+### Key Points
+- Introduced by **Ashish Vaswani et al. (2017)**.
+- Based entirely on the **Transformer** architecture.
+- Uses **Self-Attention** to understand relationships between words.
+- **Multi-Head Attention** learns different contextual patterns simultaneously.
+- Enables **parallel processing**, making training much faster than RNNs.
+
+### Core Components
+- **Encoder:** Understands the input sequence.
+- **Decoder:** Generates the output sequence.
+- **Positional Encoding:** Preserves word order.
+- **Feed-Forward Network:** Refines learned representations.
+
+**Flow:**
+Input → Positional Encoding → Encoder → Multi-Head Attention → Decoder → Output
+
+# History of Generative AI — Components & Purpose
+
+| **Model** | **Component** | **Purpose** |
+|-----------|---------------|-------------|
+| **GAN (2014)** | Generator (G) | Generates realistic fake data from random noise |
+|  | Discriminator (D) | Identifies whether data is real or fake |
+|  | Random Noise (Z) | Starting input for the Generator |
+|  | Minimax Game | Trains G and D through competition |
+| **VAE (2013)** | Encoder | Converts input into a latent representation |
+|  | Latent Space (Z) | Stores compressed features of the data |
+|  | Decoder | Reconstructs data from the latent vector |
+|  | Reparameterization Trick | Enables efficient gradient-based learning |
+| **Transformer (2017)** | Self-Attention | Learns relationships between all tokens |
+|  | Multi-Head Attention | Captures multiple contextual patterns simultaneously |
+|  | Encoder | Builds contextual understanding of the input |
+|  | Decoder | Generates the output sequence |
+|  | Positional Encoding | Preserves the order of words/tokens |
+|  | Feed-Forward Network | Refines feature representations after attention |
+
+> **Memory Shortcut**
+> - **GAN:** Generate → Discriminate
+> - **VAE:** Encode → Compress → Decode
+> - **Transformer:** Attend → Understand → Generate
 
 ## 3. Fundamentals of Machine Learning and Neural Networks
 
