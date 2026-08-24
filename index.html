@@ -25,10 +25,7 @@
       transition: transform 0.22s ease;
     }
     .sidebar > h1 {
-      font-size: 17px;
-      padding: 0 20px 12px;
-      color: var(--accent);
-      font-weight: 700;
+      display: none;
     }
     .sidebar > h1 a { color: var(--accent); }
 
@@ -126,10 +123,10 @@
     .markdown-section table { display: table; width: 100%; }
   </style>
 </head>
-<body class="sidebar-collapsed">
+<body>
   <div id="menu-launcher">
     <button id="sidebar-toggle" type="button" title="Toggle navigation menu" aria-label="Toggle navigation menu"
-      aria-expanded="false">&#9776;</button>
+      aria-expanded="true">&#9776;</button>
   </div>
   <div id="app"></div>
   <script>
@@ -201,10 +198,6 @@
           return;
         }
 
-        if (link && link.closest('.sidebar-nav')) {
-          document.body.classList.add('sidebar-collapsed');
-          btn.setAttribute('aria-expanded', 'false');
-        }
       }, true);
     });
   </script>
