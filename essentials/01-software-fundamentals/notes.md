@@ -33,8 +33,8 @@ A diagrammatic representation of an algorithm, workflow, or process.
 
 **Symbols in a flowchart:**
 
-| Symbol | Meaning |
-|---|---|
+| Symbol | Meaning | Shapes
+|---|---|--- |
 | START / END | Denotes start/stop operations | oval shape symbol
 | INPUT / OUTPUT | Denotes getting inputs and displaying outputs | parellogram shape symbol
 | PROCESS | Denotes actions or operations performed | Rectangle shape symbol
