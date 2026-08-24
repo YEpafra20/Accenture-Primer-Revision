@@ -167,6 +167,9 @@
       },
       formatUpdated: '{MM}/{DD} {HH}:{mm}',
       doneEach: function () {
+        window.requestAnimationFrame(function () {
+          window.scrollTo(0, 0);
+        });
         if (window.goatcounter && window.goatcounter.count) {
           window.goatcounter.count({
             path: window.location.pathname + window.location.hash
