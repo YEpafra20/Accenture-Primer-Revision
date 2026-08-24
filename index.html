@@ -22,6 +22,7 @@
       background: #FAFBFC;
       border-right: 1px solid var(--border);
       padding-top: 8px;
+      transition: transform 0.22s ease;
     }
     .sidebar > h1 {
       font-size: 17px;
@@ -70,38 +71,79 @@
     .sidebar-nav ul ul ul a { padding-left: 48px; font-size: 13px; color: var(--muted); }
     .sidebar-nav ul ul ul li.active > a { color: var(--accent); }
 
-    /* Persistent toggle button, top-left, always visible like the reference image */
-    #sidebar-toggle {
+    /* Keep one menu launcher in the top-left corner. */
+    .sidebar-toggle { display: none !important; }
+    #menu-launcher {
       position: fixed;
-      top: 14px;
-      left: 14px;
+      top: 12px;
+      left: 12px;
       z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    #menu-logo {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+    #sidebar-toggle {
       width: 34px;
       height: 34px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: #fff;
+      border: 0;
+      border-radius: 7px;
+      background: transparent;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 18px;
       color: var(--ink);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
-    #sidebar-toggle:hover { border-color: var(--accent); color: var(--accent); }
+    #sidebar-toggle:hover {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+    #menu-launcher:focus-within {
+      border-color: var(--accent);
+    }
 
-    body.sidebar-collapsed .sidebar { transform: translateX(-100%); }
-    body.sidebar-collapsed .content { margin-left: 0 !important; }
+    .content {
+      padding-top: 10px;
+      transition: margin-left 0.22s ease;
+    }
 
-    .content { padding-top: 10px; }
+    body.sidebar-collapsed .sidebar {
+      transform: translateX(-100%);
+    }
+    body.sidebar-collapsed .content {
+      margin-left: 0 !important;
+    }
+
+    @media (max-width: 768px) {
+      #menu-launcher { top: 10px; left: 10px; }
+      .content { padding-top: 56px; }
+    }
+
     .markdown-section { max-width: 860px; }
     .markdown-section h1 { font-size: 26px; }
     .markdown-section table { display: table; width: 100%; }
   </style>
 </head>
-<body>
-  <button id="sidebar-toggle" type="button" title="Toggle sidebar" aria-label="Toggle sidebar" aria-expanded="true">&#9776;</button>
+<body class="sidebar-collapsed">
+  <div id="menu-launcher">
+    <a href="#/" aria-label="Go to home">
+      <img id="menu-logo" src="acclogo.jpg" alt="Accenture Primer Revision logo">
+    </a>
+    <button id="sidebar-toggle" type="button" title="Toggle navigation menu" aria-label="Toggle navigation menu"
+      aria-expanded="true">&#9776;</button>
+  </div>
   <div id="app"></div>
   <script>
     window.$docsify = {
@@ -128,6 +170,13 @@
       btn.addEventListener('click', function () {
         var isCollapsed = document.body.classList.toggle('sidebar-collapsed');
         btn.setAttribute('aria-expanded', String(!isCollapsed));
+      });
+
+      document.addEventListener('click', function (event) {
+        if (event.target.closest('.sidebar-nav a')) {
+          document.body.classList.add('sidebar-collapsed');
+          btn.setAttribute('aria-expanded', 'false');
+        }
       });
     });
   </script>
