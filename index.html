@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Accenture Primer Revision</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta name="description" content="Accenture Primer Revision — Essentials and Electives">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <style>
+    :root {
+      --accent: #2E6BE6;
+      --accent-soft: #EAF1FE;
+      --ink: #1B1F27;
+      --muted: #6B7280;
+      --border: #E6E8EC;
+    }
+
+    body { font-family: -apple-system, "Segoe UI", system-ui, sans-serif; }
+
+    /* Sidebar shell */
+    .sidebar {
+      background: #FAFBFC;
+      border-right: 1px solid var(--border);
+      padding-top: 8px;
+    }
+    .sidebar > h1 {
+      font-size: 17px;
+      padding: 0 20px 12px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .sidebar > h1 a { color: var(--accent); }
+
+    /* Section labels (Essentials / Electives) */
+    .sidebar-nav > ul > li > p,
+    .sidebar-nav > ul > li > strong {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+      margin: 18px 0 4px;
+      padding: 0 20px;
+    }
+
+    .sidebar-nav ul { padding-left: 0; }
+    .sidebar-nav li { margin: 0; }
+
+    .sidebar-nav a {
+      color: var(--ink);
+      font-size: 14px;
+      padding: 6px 20px;
+      display: block;
+      border-radius: 0;
+      text-decoration: none;
+      border-left: 3px solid transparent;
+    }
+    .sidebar-nav a:hover { color: var(--accent); background: var(--accent-soft); }
+
+    .sidebar-nav li.active > a {
+      color: var(--accent);
+      font-weight: 600;
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+    }
+
+    /* Second-level (course) links */
+    .sidebar-nav ul ul a { padding-left: 34px; font-size: 13.5px; color: var(--ink); }
+    /* Third-level (README / Notes) links */
+    .sidebar-nav ul ul ul a { padding-left: 48px; font-size: 13px; color: var(--muted); }
+    .sidebar-nav ul ul ul li.active > a { color: var(--accent); }
+
+    /* Persistent toggle button, top-left, always visible like the reference image */
+    #sidebar-toggle {
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 999;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      color: var(--ink);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    #sidebar-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+    body.sidebar-collapsed .sidebar { transform: translateX(-100%); }
+    body.sidebar-collapsed .content { margin-left: 0 !important; }
+
+    .content { padding-top: 10px; }
+    .markdown-section { max-width: 860px; }
+    .markdown-section h1 { font-size: 26px; }
+    .markdown-section table { display: table; width: 100%; }
+  </style>
+</head>
+<body>
+  <button id="sidebar-toggle" type="button" title="Toggle sidebar" aria-label="Toggle sidebar" aria-expanded="true">&#9776;</button>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: 'Accenture Primer Revision',
+      loadSidebar: 'sidebar.md',
+      subMaxLevel: 3,
+      auto2top: true,
+      homepage: 'README.md',
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md'
+      },
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: 'Search notes...',
+        noData: 'No results found.',
+        depth: 4
+      },
+      formatUpdated: '{MM}/{DD} {HH}:{mm}'
+    };
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var btn = document.getElementById('sidebar-toggle');
+      btn.addEventListener('click', function () {
+        var isCollapsed = document.body.classList.toggle('sidebar-collapsed');
+        btn.setAttribute('aria-expanded', String(!isCollapsed));
+      });
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+</body>
+</html>
