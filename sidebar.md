@@ -27,8 +27,8 @@
     - [📝 Notes](electives/03-python-programming/notes.md)
 
 - **🤝 CONTRIBUTING**
-  - [📖 Contribution Guide](CONTRIBUTING.md)
-  - [![Add Modules, Courses & Topics👇🏻](https://img.shields.io/badge/Add%20Modules%2C%20Courses%20%26%20Topics-white?style=for-the-badge&logo=Addcourses)](CONTRIBUTING.md)
+  - [📖 Contribution Guide](CONTRIBUTING.md#adding-a-course)
+  - [➕ Add a Course](CONTRIBUTING.md#adding-a-course)
 
 - **📊 LEARNING METRICS**
   - [📈 GitHub repository traffic](https://github.com/YEpafra20/Accenture-Primer-Revision/graphs/traffic)

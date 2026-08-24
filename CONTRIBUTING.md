@@ -220,6 +220,22 @@ Avoid putting course-specific material in the root directory.
 
 ---
 
+## Adding a Course
+
+To add a new course, create a folder in the appropriate section and include a `README.md` overview and a `notes.md` file.
+
+Use the next available numbered folder and update `sidebar.md` with links to both files. Keep the course content inside its own folder so the navigation and revision notes stay organized.
+
+Example:
+
+```text
+essentials/05-new-course/
+├── README.md
+└── notes.md
+```
+
+---
+
 ## 📝 Writing Revision Notes
 
 When adding notes:

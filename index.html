@@ -81,24 +81,21 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 4px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #fff;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      padding: 0;
     }
     #menu-logo {
       width: 28px;
       height: 28px;
       border-radius: 6px;
       object-fit: cover;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.16);
     }
     #sidebar-toggle {
       width: 34px;
       height: 34px;
       border: 0;
       border-radius: 7px;
-      background: transparent;
+      background: rgba(255,255,255,0.84);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -111,11 +108,12 @@
       color: var(--accent);
     }
     #menu-launcher:focus-within {
-      border-color: var(--accent);
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
     }
 
     .content {
-      padding-top: 10px;
+      padding-top: 0;
       transition: margin-left 0.22s ease;
     }
 
@@ -128,7 +126,6 @@
 
     @media (max-width: 768px) {
       #menu-launcher { top: 10px; left: 10px; }
-      .content { padding-top: 56px; }
     }
 
     .markdown-section { max-width: 860px; }
@@ -142,7 +139,7 @@
       <img id="menu-logo" src="acclogo.jpg" alt="Accenture Primer Revision logo">
     </a>
     <button id="sidebar-toggle" type="button" title="Toggle navigation menu" aria-label="Toggle navigation menu"
-      aria-expanded="true">&#9776;</button>
+      aria-expanded="false">&#9776;</button>
   </div>
   <div id="app"></div>
   <script>
