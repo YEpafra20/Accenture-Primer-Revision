@@ -1,4 +1,4 @@
-- [🏠 Home](README.md)
+- [![🏠 Home](https://img.shields.io/badge/Home-Deep?style=for-the-badge&logo=Home)](README.md)
 
 - **📘 ESSENTIALS**
   - 🧩 Software Fundamentals
@@ -13,6 +13,7 @@
   - 🔄 Agile, DevOps & DevSecOps
     - [📄 README](essentials/04-agile-devops-devsecops/README.md)
     - [📝 Notes](essentials/04-agile-devops-devsecops/notes.md)
+  ---
 
 - **🎓 ELECTIVES**
   - ☁️ AWS
@@ -25,6 +26,6 @@
     - [📄 README](electives/03-python-programming/README.md)
     - [📝 Notes](electives/03-python-programming/notes.md)
 
- **🔗Submit your stream prefernce for Grouping Form**
-
-[![Microsoft Form](https://img.shields.io/badge/Microsoft%20Form-blue?style=for-the-badge&logo=microsoftforms)](https://forms.cloud.microsoft/r/cvZAnZd30M?origin=lprLink)
+   **🔗Submit your stream prefernce for Grouping Form**
+   ---
+     [![Microsoft Form](https://img.shields.io/badge/Microsoft%20Form-red?style=for-the-badge&logo=microsoftforms)](https://forms.cloud.microsoft/r/cvZAnZd30M?origin=lprLink)
