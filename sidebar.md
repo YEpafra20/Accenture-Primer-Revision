@@ -1,4 +1,4 @@
-- [![🏠 Home](https://img.shields.io/badge/Home-Deep?style=for-the-badge&logo=Home)](README.md)
+- [![🏠 Home](https://img.shields.io/badge/Home-blue?style=for-the-badge&logo=Home)](README.md)
 
 - **📘 ESSENTIALS**
   - 🧩 Software Fundamentals
