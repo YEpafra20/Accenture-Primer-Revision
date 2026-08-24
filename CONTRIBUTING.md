@@ -224,6 +224,8 @@ Avoid putting course-specific material in the root directory.
 
 To add a new course, create a folder in the appropriate section and include a `README.md` overview and a `notes.md` file.
 
+You can make the change directly on GitHub using [Add a Course](https://github.com/YEpafra20/Accenture-Primer-Revision/new/main), then commit the new files to your branch. For edits to an existing file, use [Make a Change](https://github.com/YEpafra20/Accenture-Primer-Revision/edit/main/CONTRIBUTING.md), or open the [repository](https://github.com/YEpafra20/Accenture-Primer-Revision), choose a file, select **Edit**, and commit your changes.
+
 Use the next available numbered folder and update `sidebar.md` with links to both files. Keep the course content inside its own folder so the navigation and revision notes stay organized.
 
 Example:

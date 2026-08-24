@@ -83,13 +83,6 @@
       gap: 8px;
       padding: 0;
     }
-    #menu-logo {
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
-      object-fit: cover;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.16);
-    }
     #sidebar-toggle {
       width: 34px;
       height: 34px;
@@ -135,9 +128,6 @@
 </head>
 <body class="sidebar-collapsed">
   <div id="menu-launcher">
-    <a href="#/" aria-label="Go to home">
-      <img id="menu-logo" src="acclogo.jpg" alt="Accenture Primer Revision logo">
-    </a>
     <button id="sidebar-toggle" type="button" title="Toggle navigation menu" aria-label="Toggle navigation menu"
       aria-expanded="false">&#9776;</button>
   </div>
@@ -146,7 +136,7 @@
     window.$docsify = {
       name: 'Accenture Primer Revision',
       loadSidebar: 'sidebar.md',
-      subMaxLevel: 3,
+      subMaxLevel: 0,
       auto2top: true,
       homepage: 'README.md',
       alias: {

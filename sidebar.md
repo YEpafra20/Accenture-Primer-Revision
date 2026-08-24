@@ -28,7 +28,9 @@
 
 - **🤝 CONTRIBUTING**
   - [📖 Contribution Guide](CONTRIBUTING.md#adding-a-course)
-  - [➕ Add a Course](CONTRIBUTING.md#adding-a-course)
+  - [➕ Add a Course](https://github.com/YEpafra20/Accenture-Primer-Revision/new/main)
+  - [✏️ Make a Change](https://github.com/YEpafra20/Accenture-Primer-Revision/edit/main/CONTRIBUTING.md)
+  - [🔗 Open Repository](https://github.com/YEpafra20/Accenture-Primer-Revision)
 
 - **📊 LEARNING METRICS**
   - [📈 GitHub repository traffic](https://github.com/YEpafra20/Accenture-Primer-Revision/graphs/traffic)
