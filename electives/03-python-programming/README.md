@@ -58,6 +58,6 @@
 
 ## Revision Notes
 
-Full detailed notes: [notes.md](./notes.md)
+Full detailed notes: [notes.md](#/electives/03-python-programming/notes)
 
 > **Note on Module 6 (Code Analysis and Debugging):** The source notepad did not include dedicated content for this module — it covered Introduction, Control Structures, Collection Frameworks, Functions & Modules, and File Handling in depth, but debugging/code analysis wasn't detailed separately. This section is marked as a placeholder in `notes.md` so the structure matches your 6-module format exactly — share notes on debugging tools (e.g. pdb, try/except patterns, linters) whenever you have them.

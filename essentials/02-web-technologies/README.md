@@ -65,6 +65,6 @@
 
 ## Revision Notes
 
-Full detailed notes: [notes.md](./notes.md)
+Full detailed notes: [notes.md](#/essentials/02-web-technologies/notes)
 
 > **Note on Debugging modules (2, 4, 6):** The original notepad content did not include dedicated debugging content — only concepts and syntax. Placeholder sections have been added under each debugging module in `notes.md` so the structure matches your 7-module course format exactly. Share any debugging-specific notes you have, and they'll be filled in.

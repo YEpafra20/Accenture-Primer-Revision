@@ -52,4 +52,4 @@
 
 ## Revision Notes
 
-Full detailed notes: [notes.md](./notes.md)
+Full detailed notes: [notes.md](#/essentials/01-software-fundamentals/notes)

@@ -73,4 +73,4 @@
 
 ## Revision Notes
 
-Full detailed notes: [notes.md](./notes.md)
+Full detailed notes: [notes.md](#/electives/01-aws/notes)

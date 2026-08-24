@@ -57,6 +57,6 @@
 
 ## Revision Notes
 
-Full detailed notes: [notes.md](./notes.md)
+Full detailed notes: [notes.md](#/essentials/03-gen-ai/notes)
 
 > **Note on modules 2, 5, and 6:** The source notepad included these as section headers ("Brief History of Generative AI", "Variational Autoencoders (VAEs)", "Generative Adversarial Networks (GANs)") but moved directly to the next topic without further detail under them. These sections are marked as placeholders in `notes.md` so the structure matches your 9-module format exactly — share more detail on these topics whenever you have it, and they'll be filled in.

@@ -71,6 +71,6 @@
 
 ## Revision Notes
 
-Full detailed notes: [notes.md](./notes.md)
+Full detailed notes: [notes.md](#/electives/02-mysql-relational-databases/notes)
 
 > **Note on Module 1 (RDBMS Concepts):** The source notepad listed "RDBMS Introduction" as a section header, then moved directly into the ER Model & Normalization content without separate introductory material. This section is marked as a placeholder in `notes.md` so the structure matches your 8-module format exactly — share more detail (e.g., what RDBMS is, ACID properties, RDBMS vs DBMS) whenever you have it.
