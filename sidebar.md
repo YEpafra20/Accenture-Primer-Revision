@@ -35,4 +35,4 @@
   - [🔗 Open Repository](https://github.com/YEpafra20/Accenture-Primer-Revision)
 
 - **💻Join Cloud Native Microservices Engineering**
-   [![Join Cloud Native Microservices Engineering WhatsApp Community](https://img.shields.io/badge/Join%20WhatsApp%20Community-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whtsapp.com/IBSjtqmz2zZJ5IcFbQ5haS)
+   [![Join Cloud Native Microservices Engineering WhatsApp Community](https://img.shields.io/badge/Join%20WhatsApp%20Community-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/IBSJtqmz2zZJ5IcFbQ5haS)
