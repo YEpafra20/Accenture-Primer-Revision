@@ -1,5 +1,7 @@
 - [![🏠 Home](https://img.shields.io/badge/Home-blue?style=for-the-badge&logo=Home)](README.md)
 
+- [🖼️ Quick Visual Learning](visual-learning.md)
+
 - **📘 ESSENTIALS**
   - 🧩 Software Fundamentals
     - [📄 README](essentials/01-software-fundamentals/README.md)
