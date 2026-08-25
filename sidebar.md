@@ -34,9 +34,5 @@
   - [✏️ Make a Change](https://github.com/YEpafra20/Accenture-Primer-Revision/edit/main/CONTRIBUTING.md)
   - [🔗 Open Repository](https://github.com/YEpafra20/Accenture-Primer-Revision)
 
-- **📊 LEARNING METRICS**
-  - [📈 GitHub repository traffic](https://github.com/YEpafra20/Accenture-Primer-Revision/graphs/traffic)
-
-   **🔗Submit your stream prefernce for Grouping Form**
-   ---
-     [![Microsoft Form](https://img.shields.io/badge/Microsoft%20Form-red?style=for-the-badge&logo=microsoftforms)](https://forms.cloud.microsoft/r/cvZAnZd30M?origin=lprLink)
+- **💻Join Cloud Native Microservices Engineering**
+   [![Join Cloud Native Microservices Engineering WhatsApp Community](https://img.shields.io/badge/Join%20WhatsApp%20Community-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whtsapp.com/IBSjtqmz2zZJ5IcFbQ5haS)
