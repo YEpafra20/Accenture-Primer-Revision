@@ -473,24 +473,5 @@ Static Application Security Testing (SAST) is also known as **"white box testing
 | **SaltStack** | IaC / configuration management tool |
 | **Vagrant** | IaC / environment provisioning tool |
 
+## THE END 🎉
 ---
-
-## Quick Revision Checklist
-
-- [ ] Can state the 4 central tenets of Agile
-- [ ] Can recite the 4 values of the Agile Manifesto
-- [ ] Can list all 7 Agile principles with at least one benefit each
-- [ ] Can differentiate Descriptive vs Predictive vs Prescriptive Analytics
-- [ ] Can list all 5 Analytics layers in order, with their guiding question
-- [ ] Can list the 4 types of KPIs and the Green/Yellow/Red status meaning
-- [ ] Can state the Data Mining Process steps in order
-- [ ] Can state the Design Thinking life cycle
-- [ ] Can explain why DevOps was needed (the gap it fixes)
-- [ ] Can list all 8 DevOps phases in order
-- [ ] Can name at least 4 CI/CD tools and one distinguishing fact about each
-- [ ] Can differentiate Continuous Integration vs Continuous Delivery vs Continuous Deployment
-- [ ] Can expand the CAMS framework
-- [ ] Can define DevSecOps and how it differs from DevOps
-- [ ] Can list the DevSecOps pipeline phases in order
-- [ ] Can expand SAST, DAST, IAST, SCA
-- [ ] Can define Infrastructure as Code and name at least 3 IaC tools

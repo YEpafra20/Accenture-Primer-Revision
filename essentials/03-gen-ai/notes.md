@@ -682,19 +682,5 @@ A mechanism that allows the model to focus on different parts of the input data.
 | Sound | OpenAI's MuseNet |
 | Gameplay | Reinforcement Learning |
 
+## THE END 🎉
 ---
-
-## Quick Revision Checklist
-
-- [ ] Can define AI, ML, Deep Learning, and Generative AI in one line each
-- [ ] Can differentiate Traditional AI vs Generative AI vs Predictive AI
-- [ ] Can list all 4 types of Machine Learning
-- [ ] Can explain the workflow for Supervised, Unsupervised, and Reinforcement Learning
-- [ ] Can name at least 8 common ML algorithms
-- [ ] Can list the 6 stages of ML model deployment
-- [ ] Can list deep learning model types and their use cases (CNN, RNN, etc.)
-- [ ] Can differentiate Generative vs Discriminative models with the facial recognition example
-- [ ] Can explain what RNNs, LSTM, and GRU are used for and how they differ
-- [ ] Can explain the Transformer architecture (Encoder/Decoder) and Attention Mechanism
-- [ ] Can name at least 5 transformer-based models and what makes each unique
-- [ ] Can name at least 4 industries using Generative AI and their associated tools

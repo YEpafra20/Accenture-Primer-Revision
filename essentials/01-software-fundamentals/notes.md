@@ -357,22 +357,5 @@ Version control is a mechanism used to manage multiple versions of computer file
 5. If yes, compare the conflicts and merge the changes as per the requirement
 6. Check in the new version of the files into the repository
 
+## THE END 🎉
 ---
-
-## Quick Revision Checklist
-
-- [ ] Can define Algorithm, Flowchart, Pseudocode and list flowchart symbols
-- [ ] Can differentiate Variable vs Constant vs Expression
-- [ ] Can list all 4 operator types with examples
-- [ ] Can write For, While, Do-While loop syntax from memory
-- [ ] Can explain Nested Loop execution order
-- [ ] Can differentiate 1-D vs 2-D arrays and array operations
-- [ ] Can list all 6 SDLC phases in order
-- [ ] Can differentiate HLD vs LLD
-- [ ] Can name all 6 process models and when each is used
-- [ ] Can differentiate Functional vs Non-Functional requirements
-- [ ] Can differentiate Verification vs Validation
-- [ ] Can list STLC phases in order
-- [ ] Can differentiate Static vs Dynamic testing, and Black Box vs White Box
-- [ ] Can list all 4 types of maintenance
-- [ ] Can list all 4 components of SCM

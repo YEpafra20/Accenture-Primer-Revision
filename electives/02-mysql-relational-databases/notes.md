@@ -19,7 +19,32 @@
 
 ## 1. RDBMS Concepts
 
-> Placeholder — the source notepad listed "RDBMS Introduction" as a section header, then moved directly into the ER Model & Normalization content. Add core RDBMS concepts here (what a Relational Database Management System is, tables/rows/columns, ACID properties, RDBMS vs DBMS, popular RDBMS engines) once available.
+# Relational Database Management System (RDBMS)
+
+A Relational Database Management System (RDBMS) is a database management system that stores data in structured formats called **tables**, which consist of rows (records) and columns (fields).
+
+* **Primary Key:** A unique identifier for each record within a table.
+* **Foreign Key:** Defines relationships between tables to enable efficient data retrieval based on logical associations.
+* **Foundation:** Built on the relational model proposed by **E. F. Codd in 1970**.
+
+
+
+### Key Features of RDBMS
+
+* **Structured Data Storage:** Organizes data systematically into rows and columns.
+* **Data Integrity:** Enforces accuracy and consistency using constraints such as `PRIMARY KEY`, `FOREIGN KEY`, and `UNIQUE`.
+* **SQL Support:** Uses Structured Query Language (SQL) for managing, updating, and querying data.
+* **ACID Compliance:** Guarantees reliable transactions through four core principles:
+  * **Atomicity:** Transactions are all-or-nothing.
+  * **Consistency:** Data remains valid according to defined rules.
+  * **Isolation:** Concurrent transactions do not interfere with each other.
+  * **Durability:** Committed transactions persist even after system failures.
+* **Relationships:** Supports establishing connections between tables:
+  * One-to-One (1:1)
+  * One-to-Many (1:N)
+  * Many-to-Many (N:M)
+* **Security:** Protects data through user authentication, access control levels, and granular permissions.
+* **Backup and Recovery:** Includes built-in mechanisms to duplicate data and restore it in the event of hardware or system failure.
 
 ---
 
@@ -391,26 +416,7 @@ Generates unique numbers automatically. A shared object, typically used to creat
 
 A performance-tuning method that allows faster retrieval of records. Can reduce disk I/O by using a rapid path access method to locate data quickly.
 
+
+
+## THE END 🎉
 ---
-
-## Quick Revision Checklist
-
-- [ ] Can differentiate Entity vs Attribute, with examples
-- [ ] Can explain what a Composite Key is
-- [ ] Can state the goal of Normalization
-- [ ] Can describe what 1NF, 2NF, and 3NF each require
-- [ ] Can explain Denormalization and why it's used
-- [ ] Can list the 3 MySQL data type categories with examples
-- [ ] Can list all 5 constraint types
-- [ ] Can explain Parent table vs Child table in a Foreign Key relationship
-- [ ] Can write ALTER TABLE statements to add, modify, rename, and drop a column
-- [ ] Can differentiate TRUNCATE vs DROP
-- [ ] Can differentiate DELETE vs TRUNCATE
-- [ ] Can explain COMMIT, SAVEPOINT, ROLLBACK, and ROLLBACK TO SAVEPOINT
-- [ ] Can list the 3 logical operators (AND, OR, NOT)
-- [ ] Can differentiate Single-row vs Multiple-row (aggregate) SQL functions
-- [ ] Can write a query using GROUP BY and HAVING correctly
-- [ ] Can differentiate Equijoin, Outer Join, Self Join, and Natural Join
-- [ ] Can differentiate Single-row vs Multiple-row subqueries and their operators
-- [ ] Can explain GRANT vs REVOKE
-- [ ] Can explain what a VIEW, AUTO_INCREMENT, and INDEX are used for

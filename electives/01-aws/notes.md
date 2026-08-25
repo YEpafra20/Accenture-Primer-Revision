@@ -553,26 +553,5 @@ A service providing guidance to help you:
 - Business
 - Enterprise
 
+## THE END 🎉
 ---
-
-## Quick Revision Checklist
-
-- [x] Can name the 3 components of AWS Global Infrastructure (Region, AZ, Edge Location)
-- [x] Can list the 4 factors for selecting a region
-- [x] Can list the 3 ways to interact with AWS
-- [x] Can explain S3 durability and the 6 storage classes
-- [x] Can differentiate Glacier retrieval options and their timing
-- [x] Can decode an EC2 instance type name (e.g. `c5.large`)
-- [x] Can list all 5 EC2 instance type categories and a use case for each
-- [x] Can differentiate SSD vs HDD EBS volume types
-- [x] Can explain VPC, subnets, and the 5-reserved-IP rule
-- [x] Can differentiate Internet Gateway vs NAT Gateway
-- [x] Can differentiate Security Groups (stateful) vs Network ACLs (stateless)
-- [x] Can differentiate Application Load Balancer (Layer 7) vs Network Load Balancer (Layer 4)
-- [x] Can differentiate RDS, Aurora, DynamoDB, Redshift, DocumentDB, Neptune
-- [x] Can list at least 5 "resources for technology support" services and their purpose
-- [x] Can differentiate Authentication vs Authorization
-- [x] Can explain IAM User vs Group vs Role
-- [x] Can differentiate AWS Shield Standard vs Advanced
-- [x] Can list the 6 pillars of the Well-Architected Framework
-- [x] Can list the 3 AWS pricing models and the 4 support plan tiers
