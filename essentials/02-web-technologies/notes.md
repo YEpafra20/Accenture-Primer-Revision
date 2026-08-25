@@ -216,9 +216,9 @@ JavaScript can be used on the client and server side:
 |---|---|
 | String | `var name = "John";` |
 | Number | `var age = 16;` |
-| Boolean | — |
-| Undefined | — |
-| Null | — |
+| Boolean | `var isStudent = true;` |
+| Undefined | `var city; // undefined` |
+| Null | `var car = null;` |
 
 **Reference types:**
 
@@ -226,9 +226,9 @@ JavaScript can be used on the client and server side:
 |---|---|
 | Array | `var ids = [101, 102, 103];` |
 | Object | `var x = {id: 101, name: "John", salary: 40000};` |
-| Function | — |
-| Date | — |
-| Regex | — |
+| Function | `function greet() { console.log("Hello!"); }` |
+| Date | `var today = new Date();` |
+| Regex | `var pattern = /[A-Z]+/;` |
 
 ### 3.5 JavaScript Variables
 
