@@ -357,5 +357,6 @@ Version control is a mechanism used to manage multiple versions of computer file
 5. If yes, compare the conflicts and merge the changes as per the requirement
 6. Check in the new version of the files into the repository
 
-## THE END 🎉
----
+<img src="https://www.animatedimages.org/data/media/562/animated-line-image-0184.gif" width="1920" />
+
+**THE END 🎉**

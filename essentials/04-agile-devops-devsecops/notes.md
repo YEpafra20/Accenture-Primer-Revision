@@ -473,5 +473,6 @@ Static Application Security Testing (SAST) is also known as **"white box testing
 | **SaltStack** | IaC / configuration management tool |
 | **Vagrant** | IaC / environment provisioning tool |
 
-## THE END 🎉
----
+<img src="https://www.animatedimages.org/data/media/562/animated-line-image-0184.gif" width="1920" />
+
+**THE END 🎉**

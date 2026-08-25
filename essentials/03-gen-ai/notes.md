@@ -682,5 +682,6 @@ A mechanism that allows the model to focus on different parts of the input data.
 | Sound | OpenAI's MuseNet |
 | Gameplay | Reinforcement Learning |
 
-## THE END 🎉
----
+<img src="https://www.animatedimages.org/data/media/562/animated-line-image-0184.gif" width="1920" />
+
+**THE END 🎉**

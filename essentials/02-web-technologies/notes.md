@@ -428,5 +428,6 @@ jQuery enables adding effects on a web page. jQuery effects can be categorized i
 | **Maintainability** | Easy to add new features, modify existing features, or fix issues with minimum effort, without affecting other modules and functionalities |
 | **Readability** | Ensures the code is understood by everyone else |
 
-## THE END 🎉
----
+<img src="https://www.animatedimages.org/data/media/562/animated-line-image-0184.gif" width="1920" />
+
+**THE END 🎉**
